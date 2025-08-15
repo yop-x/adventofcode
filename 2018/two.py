@@ -32,10 +32,51 @@ def checksum(lines):
     return count_2 * count_3
 
 
-print(checksum(lines))
+print("the result of part one: ", checksum(lines))
+
+
+
+
+# abcde
+# fghij
+# klmno
+# pqrst
+# fguij
+# axcye
+# wvxyz 
+
+
+def mismatch_by_one(a, b):
+    if len(a) != len(b):
+        return False
+    
+    
+    mismatch_count = 0
+    
+    for i in range(len(a)):
+        if a[i] != b[i]:
+            mismatch_count += 1
+            if mismatch_count > 1:
+                return False
+    
+    if mismatch_count == 1:
+        return True
+
+def check_pair(lines):
+    
+    pair_list =  []
+    for i in range(len(lines)):
+        for j in range(i+1, len(lines)):
+            if mismatch_by_one(lines[i], lines[j]):
+                pair_list.append((lines[i], lines[j]))
+             
+            
+    return pair_list
+
 
 
 
 
 
 # to find pair that with only one mismatch character at the same location 
+print("part two: ", check_pair(lines))
