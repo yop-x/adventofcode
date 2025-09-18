@@ -12,27 +12,40 @@ with open('./input_two.txt', 'r') as f:
     f = list(map(int, f.read().strip().split(',')))
 
 
-print(f) 
-
 def encode(numbers):
-    # numbers = numbers[:]  # uncomment if you don't want to mutate the input
+    
     for i in range(0, len(numbers), 4):
         op = numbers[i]
         if op == 99:
-            break  # halt
+            break 
         
-        a = numbers[i + 1]
-        b = numbers[i + 2]
-        dst = numbers[i + 3]
-
+        
+        first = numbers[i+1]
+        second = numbers[i+2]
+        result  = numbers[i+3]
+        
+        
         if op == 1:
-            numbers[dst] = numbers[a] + numbers[b]
+            numbers[result] = numbers[first] + numbers[second]
+    
+            
         elif op == 2:
-            numbers[dst] = numbers[a] * numbers[b]
+            numbers[result] = numbers[first] * numbers[second]
+            
         else:
-            raise ValueError(f"Bad opcode {op} at position {i}")
+            raise ValueError(f'bad opcode {op} at postion {i}')
+        
+    return numbers 
 
-    return numbers
 
-
-print(encode(f))
+            
+for noun in range(0, 100):
+    for verb in range(0,100):
+        program = f[:]  # <- copy each time
+        program[1] = noun
+        program[2] = verb
+        result = encode(program)
+        if result[0] == 19690720:
+            print("Found noun:", noun, "verb:", verb)
+            print("Answer:", 100 * noun + verb)
+            
