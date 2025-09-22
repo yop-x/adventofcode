@@ -25,13 +25,13 @@ print(f'Part one answer: {len(set(passwords_updated))}')
 part_two = []
 for number in set(passwords_updated):
     score = 0 
-    for i in range(0,4):
-        if str(number)[i] == str(number)[i+1] and str(number)[i] == str(number)[i+2]:
+    for i in range(4):
+        if (str(number)[i] == str(number)[i+1]) and (str(number)[i] != str(number)[i+2]):
             score += 1 
     if score == 4 or score == 2 or score == 0:
         part_two.append(number)
             
             
-print(len(set(part_two))) 
+print(len(part_two)) 
 
             
