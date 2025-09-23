@@ -22,16 +22,22 @@ print(f'Part one answer: {len(set(passwords_updated))}')
 
 
 # part two 
-part_two = []
-for number in set(passwords_updated):
-    score = 0 
-    for i in range(4):
-        if (str(number)[i] == str(number)[i+1]) and (str(number)[i] != str(number)[i+2]):
-            score += 1 
-    if score == 4 or score == 2 or score == 0:
-        part_two.append(number)
-            
-            
-print(len(part_two)) 
 
-            
+
+
+def has_exact_doubles(s):
+    i = 0 
+    while i<6:
+        j=i
+        while j < 6 and s[j] == s[i]:
+            j+=1
+        if j - i ==2:
+            return True
+        
+        i = j 
+        
+    return False 
+
+part_two = [n for n in set(passwords_updated) if has_exact_doubles(str(n))]
+
+print(len(part_two))
